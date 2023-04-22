@@ -1,5 +1,7 @@
 var API_BASE_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=22f16258&';
 
+
+
 fetch(API_BASE_URL + 's=star+wars')
     .then(function (res) {
         if (!res.ok) throw new Error('oops');
@@ -22,7 +24,7 @@ function createMovieCard(movie) {
     //cardEl.setAttribute('style', 'width: 18rem');
 
     var imgEl = document.createElement('img');
-    imgEl.setAttribute('src', movie.poster);
+    imgEl.setAttribute('src', movie.Poster);
     imgEl.setAttribute('alt', movie.Title + ' - Movie Poster');
     imgEl.setAttribute('class', 'card-img-top');
 
@@ -37,9 +39,9 @@ function createMovieCard(movie) {
     yearEl.setAttribute('class', 'card-text');
     yearEl.textContent = 'Year: ' + movie.Year;
 
-    var linkEl = document.createElement("a");
-    linkEl.href = 'https://www.imbd.com/title/' + movie.imbdId;
-    linkEl.setAttribute('target', 'imbd');
+    var linkEl = document.createElement('a');
+    linkEl.href = 'https://www.imdb.com/title/' + movie.imdbId;
+    linkEl.setAttribute('target', 'imdb');
     linkEl.textContent = 'More info';
 
 
@@ -48,14 +50,15 @@ function createMovieCard(movie) {
     cardEl.append(imgEl, bodyEl);
 
     return cardEl;
+};
 
-    function renderMovieResults(movies) {
-        var resultsEl = document.getElementById('movie-results');
-        for (i = 0; i < movies.length; i++) {
-            var movieCard = createMovieCard(movies[i]);
-            resultsEl.append(movieCard);
-        }
+function renderMovieResults(movies) {
+    var resultsEl = document.getElementById('movie-results');
+    for (i = 0; i < movies.length; i++) {
+        var movieCard = createMovieCard(movies[i]);
+        resultsEl.append(movieCard);
     }
+}
 
 
     //<div class="mx-auto my-2 card" style="width: 18rem;">
@@ -67,4 +70,3 @@ function createMovieCard(movie) {
     // </div>
     //  </div>
 
-}
